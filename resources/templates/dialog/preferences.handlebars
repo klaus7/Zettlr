@@ -45,6 +45,13 @@
             </label>
             <label for="hideDirs">{{i18n "dialog.preferences.hide_dirs"}}</label>
           </div>
+          <div class="cb-group">
+            <label class="cb-toggle">
+              <input type="checkbox" name="hideDirsNoFiles" value="yes" id="hideDirsNoFiles" {{#if hideDirsNoFiles}}checked="checked"{{/if}}>
+              <div class="toggle"></div>
+            </label>
+            <label for="hideDirsNoFiles">{{i18n "dialog.preferences.hide_dirs_no_files"}}</label>
+          </div>
         </div>
         <div class="box-right">
           <p>

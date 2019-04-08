@@ -38,6 +38,7 @@ class ZettlrPreview {
     this._renderer = parent
     this._snippets = false
     this._hideDirs = false
+    this._hideDirsNoFiles = false
     this._selectedFile = null
 
     this._data = [] // The whole data (as returned by _renderer.getCurrentDir())
@@ -172,17 +173,21 @@ class ZettlrPreview {
         // Render a directory
         elem += d.name
         if (this._snippets) {
+          let cntFiles = d.children.filter(e => e.type === 'file').length;
+          if (this._hideDirsNoFiles && cntFiles === 0) {
+            continue;
+          }
           elem += `<p class="snippet">
           <span class="directories">
             ${d.children.filter(e => e.type === 'directory').length} ${trans('gui.dirs')}
           </span>
           <span class="files">
-            ${d.children.filter(e => e.type === 'file').length} ${trans('gui.files')}
+            ${cntFiles} ${trans('gui.files')}
           </span>
           <span class="virtual-directories">
             ${d.children.filter(e => e.type === 'virtual-directory').length} ${trans('gui.virtual_dirs')}
           </span>
-          </p>`
+          </p>`;
         }
       } else if (d.type === 'file') {
         // Retrieve all tags the file got.
@@ -553,6 +558,12 @@ class ZettlrPreview {
    */
   hideDirs (val) {
     this._hideDirs = Boolean(val)
+    this.refresh()
+    return this
+  }
+
+  hideDirsNoFiles (val) {
+    this._hideDirsNoFiles = Boolean(val)
     this.refresh()
     return this
   }

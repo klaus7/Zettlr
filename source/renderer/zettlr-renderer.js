@@ -152,6 +152,7 @@ class ZettlrRenderer {
     // Set snippets
     this.getPreview().snippets(global.config.get('snippets'))
     this.getPreview().hideDirs(global.config.get('hideDirs'))
+    this.getPreview().hideDirsNoFiles(global.config.get('hideDirsNoFiles'))
     // Receive the application language
     this.setLocale(global.config.get('appLang'))
     // muteLines initial setting
