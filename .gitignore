@@ -10,3 +10,6 @@ release
 # Don't commit these pesky yarn logs
 yarn-error.log
 yarn.log
+
+# IDE files
+.idea
